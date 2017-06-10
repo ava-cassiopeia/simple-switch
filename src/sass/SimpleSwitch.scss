@@ -1,7 +1,12 @@
-$simple-switch_size: 12px;
-$simple-switch_outline-size: 3px;
-$simple-switch_switch-speed: 250ms;
+$simple-switch_size: 12px !default;
+$simple-switch_outline-size: 3px !default;
+$simple-switch_switch-speed: 250ms !default;
+$simple-switch_color: #f44336 !default;
+$simple-switch_tray-color: #ccc !default;
+$simple-switch_focus-color: #03A9F4 !default;
+$simple-switch_handle-color: #fff !default;
 
+// Hide the checkbox, but keep it in the DOM so it is visible to screen readers
 ._simple-switch-checkbox {
     height: 0px;
     width: 0px;
@@ -13,17 +18,17 @@ $simple-switch_switch-speed: 250ms;
     display: inline-block;
     position: relative;
     vertical-align: bottom;
-    background: #ccc;
+    background: $simple-switch_tray-color;
     border-radius: $simple-switch_size;
     padding: 0 #{$simple-switch_size * 1.25} 0 0;
-    border: #{$simple-switch_outline-size} solid #ccc;
+    border: #{$simple-switch_outline-size} solid $simple-switch_tray-color;
     transition: background $simple-switch_switch-speed ease-out;
     outline: none;
     box-sizing: padding-box;
 
     &.on {
-        background: #f44336;
-        border: #{$simple-switch_outline-size} solid #f44336;
+        background: $simple-switch_color;
+        border: #{$simple-switch_outline-size} solid $simple-switch_color;
 
         .handle {
             transform: translateX(#{$simple-switch_size * 1.25});
@@ -31,14 +36,14 @@ $simple-switch_switch-speed: 250ms;
     }
 
     &.focus {
-        border: #{$simple-switch_outline-size} solid #03A9F4;
+        border: #{$simple-switch_outline-size} solid $simple-switch_focus-color;
     }
 
     .handle {
         width: $simple-switch_size;
         height: $simple-switch_size;
         border-radius: $simple-switch_size;
-        background: #fff;
+        background: $simple-switch_handle-color;
         display: block;
         transition: transform $simple-switch_switch-speed ease-out;
     }
