@@ -1,5 +1,7 @@
 # Simple Switch
 
+[![npm version](https://badge.fury.io/js/a-simple-switch.svg)](https://badge.fury.io/js/a-simple-switch)
+
 Simple, accessible, performant implementation of the Switch UI element.
 
 **Features:**
