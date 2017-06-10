@@ -1,6 +1,6 @@
-import {SimpleSwitch} from "./SimpleSwitch.js";
+import {Switch} from "./Switch.js";
 
-export {SimpleSwitch};
+export {Switch};
 
 export var init = function() {
     var x, _switch, switches = document.querySelectorAll("[data-type='simple-switch']");
@@ -8,7 +8,7 @@ export var init = function() {
     for(x = 0; x < switches.length; x++) {
         _switch = switches[x];
 
-        new SimpleSwitch({
+        new Switch({
             element: _switch
         });
     }

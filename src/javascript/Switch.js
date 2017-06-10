@@ -1,4 +1,4 @@
-export class SimpleSwitch {
+export class Switch {
 
     constructor(config) {
         this.element = config.element;
