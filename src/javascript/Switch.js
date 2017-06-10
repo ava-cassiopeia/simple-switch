@@ -1,7 +1,7 @@
 export class Switch {
 
     constructor(config) {
-        this.element = config.element;
+        this.element = config.element || document.querySelector(config.selector);
         this.checked = false;
 
         this.setup();
@@ -42,11 +42,11 @@ export class Switch {
     }
 
     checkboxFocused(e) {
-        this.track.classList.add("focus");
+        this.track.classList.add(Switch.FOCUSED_CLASS_NAME);
     }
 
     checkboxBlurred(e) {
-        this.track.classList.remove("focus");
+        this.track.classList.remove(Switch.FOCUSED_CLASS_NAME);
     }
 
     trackClicked(e) {
@@ -58,9 +58,17 @@ export class Switch {
     }
 
     toggle() {
-        this.checked = this.track.classList.toggle("on");
+        this.checked = this.track.classList.toggle(Switch.CHECKED_CLASS_NAME);
 
         this.element.checked = this.checked;
+    }
+
+    static get CHECKED_CLASS_NAME() {
+        return "on";
+    }
+
+    static get FOCUSED_CLASS_NAME() {
+        return "focus";
     }
 
 }

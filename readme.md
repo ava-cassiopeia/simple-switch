@@ -11,15 +11,62 @@ Simple, accessible, performant implementation of the Switch UI element.
 ---
 
   - [Installation](#installation)
+    - [Installing the Javascript](#installing-the-javascript)
+    - [Installing the CSS](#installing-the-css)
+    - [Installing the SASS](#installing-the-sass)
   - [Creating a Simple Switch](#creating-a-simple-switch)
     - [Automatically Creating Switches](#automatically-creating-switches)
     - [Manually Creating Switches](#manually-creating-switches)
 
 ## Installation
 
-To install the Switch code, simply import the Javascript and CSS files present
-into your page as needed. Make sure to place the Javascript code at the bottom
-of the `<body>` tag.
+To install the Switch code, you will need to in some way include the Simple
+Switch Javascript and CSS into your page/build. Please follow the relevant
+instructions below for more information.
+
+To get the latest minified/production ready files, please see the
+[releases page](https://github.com/aeolingamenfel/simple-switch/releases).
+
+### Installing the Javascript
+
+The Javascript is available as a NPM package, buildable through Webpack, or as
+a minified/uglified file that can be directly imported into the page.
+
+The minified Javascript file is available on the
+[releases page](https://github.com/aeolingamenfel/simple-switch/releases),
+within the release `.zip` file, under `js/`.
+
+---
+
+Alternatively, the Webpack package can be installed by running:
+
+```
+npm i --save a-simple-switch
+```
+
+And then importing it into your webpack build by saying:
+
+```Javascript
+import * as SimpleSwitch from "a-simple-switch";
+```
+
+### Installing the CSS
+
+You can install the CSS by downloading the compiled CSS file from the
+[releases page](https://github.com/aeolingamenfel/simple-switch/releases),
+under `css/`.
+
+### Installing the SASS
+
+You can import the relevant SASS file into your SASS build by either downloading
+the latest release from the
+[releases page](https://github.com/aeolingamenfel/simple-switch/releases) and
+grabbing the SASS file from the `sass/` directory in the release, *or* you may
+directly import it from the source code:
+
+```SASS
+@import "path/to/SimpleSwitch/src/sass/SimpleSwitch.scss";
+```
 
 ## Creating a Simple Switch
 
@@ -32,12 +79,23 @@ details.
 
 To have a switch be automatically upgraded, simply add the `data-type` attribute
 to any checkbox-type input that you want upgraded, and set that attribute to the
-value of `simple-switch`.
+value of `simple-switch`. Then, at the end of your `<body>` tag, simply call
+`SimpleSwitch.init()` to initialize all of the switches marked as noted above.
 
 *Example:*
 
 ```HTML
 <input type="checkbox" name="my-checkbox" data-type="simple-switch" />
+```
+
+Javascript Setup:
+
+```HTML
+<!-- ^^ Rest of your page above ^^ -->
+    <script type="text/javascript">
+        SimpleSwitch.init();
+    </script>
+</body>
 ```
 
 ### Manually Creating Switches
