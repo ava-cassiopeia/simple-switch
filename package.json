@@ -1,5 +1,5 @@
 {
-  "name": "simple-switch",
+  "name": "a-simple-switch",
   "version": "0.1.0",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
