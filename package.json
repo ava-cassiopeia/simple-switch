@@ -1,0 +1,19 @@
+{
+  "name": "simple-switch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivan Mattie",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.2",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "webpack": "^2.6.1"
+  }
+}
