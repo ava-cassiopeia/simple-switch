@@ -10,6 +10,7 @@ Simple, accessible, performant implementation of the Switch UI element.
 
 ---
 
+  - [Statistics](#statistics)
   - [Installation](#installation)
     - [Installing the Javascript](#installing-the-javascript)
     - [Installing the CSS](#installing-the-css)
@@ -17,6 +18,16 @@ Simple, accessible, performant implementation of the Switch UI element.
   - [Creating a Simple Switch](#creating-a-simple-switch)
     - [Automatically Creating Switches](#automatically-creating-switches)
     - [Manually Creating Switches](#manually-creating-switches)
+
+## Statistics
+
+Below are the gzipped sizes of the source files. All measured using an Apache
+server and Google Chrome.
+
+| File | Size (after gzip) |
+| ---- | ----------------- |
+| `SimpleSwitch.css` | 785 bytes |
+| `SimpleSwitch.min.js` | 1.4 kilobytes |
 
 ## Installation
 
