@@ -4,8 +4,8 @@
 
 Simple, accessible, performant implementation of the Switch UI element.
 
-![image](https://user-images.githubusercontent.com/6314286/27006387-34f51ae4-4df0-11e7-903d-f5a05e783d6e.png)<br />
-![Switch demo gif](https://user-images.githubusercontent.com/6314286/27008413-8dc15d6c-4e2d-11e7-8ad5-d521f2f9381c.gif)
+![Demo gif of switch in both material and normal mode](https://user-images.githubusercontent.com/6314286/27013778-fe0c7776-4ea7-11e7-8420-0cd532d3fec6.gif)<br />
+*Above shows both the normal and 'material' mode available for the switch*
 
 **Features:**
 
@@ -31,8 +31,8 @@ server and Google Chrome.
 
 | File | Size (after gzip) |
 | ---- | ----------------- |
-| `SimpleSwitch.css` | 785 bytes |
-| `SimpleSwitch.min.js` | 1.4 kilobytes |
+| `SimpleSwitch.css` | 860 bytes |
+| `SimpleSwitch.min.js` | 1.6 kilobytes |
 
 ## Installation
 
@@ -98,10 +98,19 @@ to any checkbox-type input that you want upgraded, and set that attribute to the
 value of `simple-switch`. Then, at the end of your `<body>` tag, simply call
 `SimpleSwitch.init()` to initialize all of the switches marked as noted above.
 
+In addition, the Switch has an additional "material" mode, which can be toggled
+per switch using the `data-material` attribute.
+
 *Example:*
 
+Standard Switch:
 ```HTML
 <input type="checkbox" name="my-checkbox" data-type="simple-switch" />
+```
+
+Material Switch:
+```HTML
+<input type="checkbox" name="my-checkbox" data-type="simple-switch" data-material="true" />
 ```
 
 Javascript Setup:
@@ -119,19 +128,29 @@ Javascript Setup:
 You may also manually instantiate a switch, which may be useful for
 lazily-loaded UI elements or parts of the page. The `Switch` class which handles
 upgrading and controlling Switches is available under the `SimpleSwitch`
-namespace, and takes one parameter, `element`, which is a direct reference to
-the HTMLElement checkbox to be upgraded.
+namespace. There are a few different parameters, outlined below.
+
+**Parameters:**
+
+| Name | Index | Value | Default Value | Required? | Description |
+| ---- | ----- | ----- | ------------- | --------- | ----------- |
+| Element | `element` | HTMLElement | `null` | Yes* | This is the checkbox HTMLElement that will be upgraded to a Switch. Required if the `selector` parameter is not set |
+| Selector | `selector` | String | `null` | Yes* | This is the CSS selector that specifies the checkbox HTMLElement that will be upgraded to a Switch. Required if the `element` parameter is not set |
+| Material Style | `material` | Boolean | `false` | No | If set, will set the Switch to have an alternative style that matches the [Material.io spec](https://material.io/guidelines/components/selection-controls.html#selection-controls-switch) for Switches |
 
 *Example:*
 
+HTML:
 ```HTML
 <input type="checkbox" name="my-checkbox" id="my-checkbox" />
 ```
 
+Javascript:
 ```Javascript
 var myCheckbox = document.getElementById("my-checkbox");
 
 new SimpleSwitch.Switch({
-    element: myCheckbox
+    element: myCheckbox,
+    material: true
 });
 ```
