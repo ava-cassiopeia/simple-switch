@@ -25,18 +25,14 @@
         </div>
         <div class="switch-wrapper">
             <label>
-                <input type="checkbox" id="mtrl-switch" />
+                <input type="checkbox" data-type="simple-switch"
+                    data-material="true" />
                 Sign Up for Newsletter
             </label>
         </div>
         <script type="text/javascript" src="/dist/js/SimpleSwitch.min.js"></script>
         <script type="text/javascript">
             SimpleSwitch.init();
-
-            new SimpleSwitch.Switch({
-                selector: "#mtrl-switch",
-                material: true
-            });
         </script>
     </body>
 </html>

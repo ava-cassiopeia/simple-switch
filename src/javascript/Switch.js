@@ -5,6 +5,11 @@ export class Switch {
         this.isMaterial = typeof config.material !== 'undefined' ? config.material : false;
         this.checked = false;
 
+        // override from property
+        if(this.element.dataset.material && this.element.dataset.material === "true") {
+            this.isMaterial = true;
+        }
+
         this.setup();
     }
 
