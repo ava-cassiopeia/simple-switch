@@ -4,6 +4,8 @@
 
 Simple, accessible, performant implementation of the Switch UI element.
 
+![image](https://user-images.githubusercontent.com/6314286/27006387-34f51ae4-4df0-11e7-903d-f5a05e783d6e.png)
+
 **Features:**
 
   - Vanilla JS/CSS: doesn't require any outside library to function
