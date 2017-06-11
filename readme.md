@@ -4,8 +4,10 @@
 
 Simple, accessible, performant implementation of the Switch UI element.
 
+<center>
 ![Demo gif of switch in both material and normal mode](https://user-images.githubusercontent.com/6314286/27013778-fe0c7776-4ea7-11e7-8420-0cd532d3fec6.gif)<br />
 *Above shows both the normal and 'material' mode available for the switch*
+</center>
 
 **Features:**
 
