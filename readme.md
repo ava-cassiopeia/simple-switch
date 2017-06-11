@@ -4,7 +4,7 @@
 
 Simple, accessible, performant implementation of the Switch UI element.
 
-![image](https://user-images.githubusercontent.com/6314286/27006387-34f51ae4-4df0-11e7-903d-f5a05e783d6e.png)
+![image](https://user-images.githubusercontent.com/6314286/27006387-34f51ae4-4df0-11e7-903d-f5a05e783d6e.png)<br />
 ![Switch demo gif](https://user-images.githubusercontent.com/6314286/27008413-8dc15d6c-4e2d-11e7-8ad5-d521f2f9381c.gif)
 
 **Features:**
