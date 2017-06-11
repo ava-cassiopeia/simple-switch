@@ -23,6 +23,7 @@ Simple, accessible, performant implementation of the Switch UI element.
   - [Creating a Simple Switch](#creating-a-simple-switch)
     - [Automatically Creating Switches](#automatically-creating-switches)
     - [Manually Creating Switches](#manually-creating-switches)
+  - [SASS Variables](#sass-variables)
 
 ## Statistics
 
@@ -154,3 +155,21 @@ new SimpleSwitch.Switch({
     material: true
 });
 ```
+
+## SASS Variables
+
+If you have chosen to include the SASS version of the styles for the Switch
+into your project, there are a number of variables available to you to override
+to customize the look and feel of the Switch. See more information about these
+below.
+
+| Name | Value | Default Value | Description |
+| ---- | ----- | ------------- | ----------- |
+| `$simple-switch_color` | Color | `#f44336` | Determines the color of the Switch, which isn't visible until the user has checked/switched "on" the switch |
+| `$simple-switch_focus-color` | Color | `#03A9F4` | Determines the color that the outline around the Switch will be, where the outline only appears when the Switch gains focus |
+| `$simple-switch_focus-ring-size` | Size Unit (px) | `7px` | On the Material version of the Switch, determines how much larger the radius of the focus ring is than the handle of the Switch |
+| `$simple-switch_handle-color` | Color | `#fff` | Determines the color of the Switch's handle |
+| `$simple-switch_outline-size` | Size Unit (px) | `3px` | Determines how thick the outline around the Switch's track is, both for the focus ring and the padding around the actual handle of the Switch |
+| `$simple-switch_size` | Size Unit (px) | `12px` | By default, the Switch matches its size to the inherited `font-size` of the Switch, so that it can match any label/text next to it in terms of size. However, on older browsers that don't support CSS Variables, this is the fallback that the CSS goes to |
+| `$simple-switch_switch-speed` | Timing Unit | `250ms` | The amount of time it takes the Switch animation to finish moving between the "on" and "off" state |
+| `$simple-switch_tray-color` | Color | `#ccc` | The color of the tray of the Switch |

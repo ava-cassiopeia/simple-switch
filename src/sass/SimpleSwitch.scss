@@ -1,12 +1,13 @@
-$simple-switch_outline-size: 3px !default;
-$simple-switch_switch-speed: 250ms !default;
 $simple-switch_color: #f44336 !default;
-$simple-switch_tray-color: #ccc !default;
 $simple-switch_focus-color: #03A9F4 !default;
-$simple-switch_handle-color: #fff !default;
 $simple-switch_focus-ring-size: 7px !default;
+$simple-switch_handle-color: #fff !default;
+$simple-switch_outline-size: 3px !default;
 // this is just a default value/fallback for older browsers
 $simple-switch_size: 12px !default;
+$simple-switch_switch-speed: 250ms !default;
+$simple-switch_tray-color: #ccc !default;
+
 
 // Hide the checkbox, but keep it in the DOM so it is visible to screen readers
 ._simple-switch-checkbox {
