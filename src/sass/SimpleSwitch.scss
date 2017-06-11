@@ -4,6 +4,7 @@ $simple-switch_color: #f44336 !default;
 $simple-switch_tray-color: #ccc !default;
 $simple-switch_focus-color: #03A9F4 !default;
 $simple-switch_handle-color: #fff !default;
+$simple-switch_focus-ring-size: 7px !default;
 // this is just a default value/fallback for older browsers
 $simple-switch_size: 12px !default;
 
@@ -53,6 +54,7 @@ $simple-switch_size: 12px !default;
     }
 
     .handle {
+        position: relative;
         width: calc(#{$simple-switch_size - ($simple-switch_outline-size * 2)});
         height: calc(#{$simple-switch_size - ($simple-switch_outline-size * 2)});
         border-radius: $simple-switch_size;
@@ -60,6 +62,7 @@ $simple-switch_size: 12px !default;
         display: block;
         transition: transform $simple-switch_switch-speed ease-out;
         will-change: transition;
+        z-index: 2;
 
         @supports(--foobar: false) {
             width: calc(var(--simple-switch_size) - #{$simple-switch_outline-size * 2});
@@ -85,6 +88,14 @@ $simple-switch_size: 12px !default;
         &.on {
             background: $simple-switch_color;
 
+            &:after {
+                transform: translateX(#{$simple-switch_size - $simple-switch_outline-size});
+
+                @supports(--foobar: false) {
+                    transform: translateX(calc(var(--simple-switch_size) - #{$simple-switch_outline-size}));
+                }
+            }
+
             .handle {
                 background: darken($simple-switch_color, 15%);
                 transform: translateX(#{$simple-switch_size - $simple-switch_outline-size});
@@ -93,6 +104,35 @@ $simple-switch_size: 12px !default;
                     transform: translateX(calc(var(--simple-switch_size) - #{$simple-switch_outline-size}));
                 }
             }
+        }
+
+        // this represents the focus state ring
+        &:after {
+            $_extra: $simple-switch_focus-ring-size;
+
+            content: "";
+            position: absolute;
+            top: #{(-0.75 * $simple-switch_outline-size) - $_extra};
+            left: #{(-1 * $simple-switch_outline-size) - $_extra};
+            width: ($simple-switch_size + ($_extra * 2));
+            height: ($simple-switch_size + ($_extra * 2));
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.125);
+            border-radius: ($simple-switch_size + ($_extra * 2));
+            opacity: 0;
+            will-change: opacity;
+            transition: opacity $simple-switch_switch-speed ease-out,
+                        transform $simple-switch_switch-speed ease-out;
+
+            @supports(--foobar: false) {
+                width: calc(var(--simple-switch_size) + #{$_extra * 2});
+                height: calc(var(--simple-switch_size) + #{$_extra * 2});
+                border-radius: calc(var(--simple-switch_size) + #{$_extra * 2});
+            }
+        }
+
+        &.focus:after {
+            opacity: 1;
         }
 
         .handle {
