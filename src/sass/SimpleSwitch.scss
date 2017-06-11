@@ -59,11 +59,56 @@ $simple-switch_size: 12px !default;
         background: $simple-switch_handle-color;
         display: block;
         transition: transform $simple-switch_switch-speed ease-out;
+        will-change: transition;
 
         @supports(--foobar: false) {
             width: calc(var(--simple-switch_size) - #{$simple-switch_outline-size * 2});
             height: calc(var(--simple-switch_size) - #{$simple-switch_outline-size * 2});
             border-radius: var(--simple-switch_size);
+        }
+    }
+
+    // Material mode (makes the Switch match the material.io spec)
+    &._material {
+        padding: 0;
+        margin: $simple-switch_outline-size 0;
+        height: #{$simple-switch_size - $simple-switch_outline-size};
+        width: #{$simple-switch_size * 1.5};
+        border: none;
+        vertical-align: top;
+
+        @supports(--foobar: false) {
+            height: calc(var(--simple-switch_size) - #{$simple-switch_outline-size});
+            width: calc(var(--simple-switch_size) * 1.5);
+        }
+
+        &.on {
+            background: $simple-switch_color;
+
+            .handle {
+                background: darken($simple-switch_color, 15%);
+                transform: translateX(#{$simple-switch_size - $simple-switch_outline-size});
+
+                @supports(--foobar: false) {
+                    transform: translateX(calc(var(--simple-switch_size) - #{$simple-switch_outline-size}));
+                }
+            }
+        }
+
+        .handle {
+            position: absolute;
+            top: #{-0.75 * $simple-switch_outline-size};
+            left: #{-1 * $simple-switch_outline-size};
+            width: $simple-switch_size;
+            height: $simple-switch_size;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            transition: transform $simple-switch_switch-speed ease-out,
+                        background $simple-switch_switch-speed ease-out;
+
+            @supports(--foobar: false) {
+                width: var(--simple-switch_size);
+                height: var(--simple-switch_size);
+            }
         }
     }
 }

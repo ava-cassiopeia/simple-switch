@@ -2,6 +2,7 @@ export class Switch {
 
     constructor(config) {
         this.element = config.element || document.querySelector(config.selector);
+        this.isMaterial = typeof config.material !== 'undefined' ? config.material : false;
         this.checked = false;
 
         this.setup();
@@ -14,6 +15,10 @@ export class Switch {
         this.element.classList.add("_simple-switch-checkbox");
         this.track.classList.add("_simple-switch-track");
         this.handle.classList.add("handle");
+
+        if(this.isMaterial) {
+            this.track.classList.add("_material");
+        }
 
         this.track.setAttribute("tabindex", -1);
 

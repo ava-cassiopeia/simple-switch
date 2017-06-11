@@ -8,19 +8,35 @@
             body {
                 font-family: sans-serif;
             }
+
+            .switch-wrapper {
+                margin: 0 0 20px;
+                font-size: 20px;
+            }
         </style>
         <link rel="stylesheet" type="text/css" href="/dist/css/SimpleSwitch.css" />
     </head>
     <body>
-        <div>
+        <div class="switch-wrapper">
             <label>
                 <input type="checkbox" data-type="simple-switch" />
                 Remember Me
             </label>
         </div>
+        <div class="switch-wrapper">
+            <label>
+                <input type="checkbox" id="mtrl-switch" />
+                Sign Up for Newsletter
+            </label>
+        </div>
         <script type="text/javascript" src="/dist/js/SimpleSwitch.min.js"></script>
         <script type="text/javascript">
             SimpleSwitch.init();
+
+            new SimpleSwitch.Switch({
+                selector: "#mtrl-switch",
+                material: true
+            });
         </script>
     </body>
 </html>
