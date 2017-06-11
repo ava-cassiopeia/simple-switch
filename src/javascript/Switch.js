@@ -21,6 +21,18 @@ export class Switch {
 
         this.track.appendChild(this.handle);
         this.element.insertAdjacentElement('afterend', this.track);
+
+        this.updateSize();
+    }
+
+    /**
+     * Updates the size of the Switch to match the inherited font size.
+     */
+    updateSize() {
+        const _style = window.getComputedStyle(this.track);
+        const inheritedFontSize = _style['font-size'];
+
+        this.track.style.setProperty('--simple-switch_size', inheritedFontSize);
     }
 
     bind() {
