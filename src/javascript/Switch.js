@@ -3,7 +3,7 @@ export class Switch {
     constructor(config) {
         this.element = config.element || document.querySelector(config.selector);
         this.isMaterial = typeof config.material !== 'undefined' ? config.material : false;
-        this.checked = false;
+        this.checked = !!this.element.checked;
 
         // override from property
         if(this.element.dataset.material && this.element.dataset.material === "true") {

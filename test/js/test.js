@@ -9,12 +9,19 @@ describe("SimpleSwitch", function() {
 });
 
 describe("Switch instance", function() {
-    let inputElement = document.getElementById("simple-switch-test-input");
-    let testSwitch = new SimpleSwitch.Switch({
-        element: inputElement
+    const checkedInputElement = document.getElementById("simple-switch-input-checked");
+    const uncheckedInputElement = document.getElementById("simple-switch-input-unchecked");
+
+    let testSwitchChecked = new SimpleSwitch.Switch({
+        element: checkedInputElement
+    });
+
+    let testSwitchUnchecked = new SimpleSwitch.Switch({
+        element: uncheckedInputElement
     });
 
     it("should have an initial state that matches the element's state", function() {
-        assert(testSwitch.checked === inputElement.checked);
+        assert(checkedInputElement.checked === testSwitchChecked.checked
+            && uncheckedInputElement.checked === testSwitchUnchecked.checked);
     });
 });
