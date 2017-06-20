@@ -33,6 +33,10 @@ export class Switch {
         this.element.insertAdjacentElement('afterend', this.track);
 
         this.updateSize();
+
+        if(this.checked) {
+            this.track.classList.add(Switch.CHECKED_CLASS_NAME);
+        }
     }
 
     /**
