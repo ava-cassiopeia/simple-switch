@@ -6,6 +6,10 @@ describe("SimpleSwitch", function() {
     it("should have an init() function", function() {
         assert(!!window.SimpleSwitch.init && typeof window.SimpleSwitch.init === 'function');
     });
+
+    it("should make the Switch class available", function() {
+        assert(!!window.SimpleSwitch.Switch);
+    });
 });
 
 describe("Switch instance", function() {
