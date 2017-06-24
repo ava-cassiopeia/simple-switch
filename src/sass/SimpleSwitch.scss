@@ -28,7 +28,8 @@ $simple-switch_tray-color: #ccc !default;
     border-radius: $simple-switch_size;
     padding: 0 calc((#{$simple-switch_size} * 1.25) - #{$simple-switch_outline-size * 2}) 0 0;
     border: #{$simple-switch_outline-size} solid $simple-switch_tray-color;
-    transition: background $simple-switch_switch-speed ease-out;
+    transition: background $simple-switch_switch-speed ease-out,
+                border $simple-switch_switch-speed ease-out;
     outline: none;
     box-sizing: padding-box;
 

@@ -25,6 +25,10 @@ export class Switch {
             this.track.classList.add("_material");
         }
 
+        if(this.checked) {
+            this.track.classList.add(Switch.CHECKED_CLASS_NAME);
+        }
+
         this.track.setAttribute("tabindex", -1);
 
         this.bind();
@@ -33,10 +37,6 @@ export class Switch {
         this.element.insertAdjacentElement('afterend', this.track);
 
         this.updateSize();
-
-        if(this.checked) {
-            this.track.classList.add(Switch.CHECKED_CLASS_NAME);
-        }
     }
 
     /**
