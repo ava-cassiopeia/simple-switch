@@ -31,7 +31,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-webpack": "^1.5.0",
     "gulp-zip": "^4.0.0",
-    "medusa-cli": "^0.3.1",
+    "medusa-cli": "^0.5.1",
     "webpack": "^2.6.1",
     "webpack-stream": "^3.2.0"
   }
