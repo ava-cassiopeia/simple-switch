@@ -4,7 +4,7 @@
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "medusa"
   },
   "author": "Ivan Mattie",
   "license": "ISC",

@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "8"
+addons:
+  chrome: stable
+before_script:
+  - npm i -g medusa-cli
