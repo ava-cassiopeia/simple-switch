@@ -49,8 +49,4 @@ describe("Switch instance", function() {
         assert(dynamicSwitch.checked === (!oldState));
         assert(dynamicSwitch.checked === dynamicCheckbox.checked);
     });
-
-    it("should fail", function() {
-        throw new Error("Yay, an error!");
-    });
 });
