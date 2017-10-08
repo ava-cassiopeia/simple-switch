@@ -16,7 +16,6 @@ Simple, accessible, performant implementation of the Switch UI element.
 
 ---
 
-  - [Statistics](#statistics)
   - [Installation](#installation)
     - [Installing the Javascript](#installing-the-javascript)
     - [Installing the CSS](#installing-the-css)
@@ -25,16 +24,6 @@ Simple, accessible, performant implementation of the Switch UI element.
     - [Automatically Creating Switches](#automatically-creating-switches)
     - [Manually Creating Switches](#manually-creating-switches)
   - [SASS Variables](#sass-variables)
-
-## Statistics
-
-Below are the gzipped sizes of the source files. All measured using an Apache
-server and Google Chrome.
-
-| File | Size (after gzip) |
-| ---- | ----------------- |
-| `SimpleSwitch.css` | 860 bytes |
-| `SimpleSwitch.min.js` | 1.6 kilobytes |
 
 ## Installation
 
@@ -139,6 +128,7 @@ namespace. There are a few different parameters, outlined below.
 | Element | `element` | HTMLElement | `null` | Yes* | This is the checkbox HTMLElement that will be upgraded to a Switch. Required if the `selector` parameter is not set |
 | Selector | `selector` | String | `null` | Yes* | This is the CSS selector that specifies the checkbox HTMLElement that will be upgraded to a Switch. Required if the `element` parameter is not set |
 | Material Style | `material` | Boolean | `false` | No | If set, will set the Switch to have an alternative style that matches the [Material.io spec](https://material.io/guidelines/components/selection-controls.html#selection-controls-switch) for Switches |
+| Update Size from Font | `matchSizeToFont` | Boolean | `false` | No | If set, will cause the Switch to attempt to match its size to the font size of the containing element |
 
 *Example:*
 
@@ -149,7 +139,7 @@ HTML:
 
 Javascript:
 ```Javascript
-var myCheckbox = document.getElementById("my-checkbox");
+let myCheckbox = document.getElementById("my-checkbox");
 
 new SimpleSwitch.Switch({
     element: myCheckbox,
