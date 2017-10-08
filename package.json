@@ -1,6 +1,6 @@
 {
   "name": "a-simple-switch",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "scripts": {
