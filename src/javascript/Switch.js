@@ -156,7 +156,18 @@ export class Switch {
     toggle() {
         this.checked = this.track.classList.toggle(Switch.CHECKED_CLASS_NAME);
 
+        this.syncState();
+    }
+
+    /**
+     * Manages syncing the state between the Switch and the wrapped checkbox.
+     */
+    syncState() {
         this.element.checked = this.checked;
+
+        // dispatch change event
+        const evt = new Event("change");
+        this.element.dispatchEvent(evt);
     }
 
     static get CHECKED_CLASS_NAME() {
