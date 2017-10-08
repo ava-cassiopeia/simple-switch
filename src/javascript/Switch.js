@@ -1,12 +1,17 @@
 export class Switch {
 
     constructor(config) {
-        this.element = config.element || document.querySelector(config.selector);
-        this.isMaterial = typeof config.material !== 'undefined' ? config.material : false;
+        this.element = config.element
+            || document.querySelector(config.selector);
+        this.isMaterial = typeof config.material !== 'undefined'
+            ? config.material : false;
         this.checked = !!this.element.checked;
+        this.matchSizeToFont = typeof config.matchSizeToFont !== 'undefined' ?
+            config.matchSizeToFont : false;
 
         // override from property
-        if(this.element.dataset.material && this.element.dataset.material === "true") {
+        if(this.element.dataset.material
+            && this.element.dataset.material === "true") {
             this.isMaterial = true;
         }
 
@@ -43,6 +48,10 @@ export class Switch {
      * Updates the size of the Switch to match the inherited font size.
      */
     updateSize() {
+        if(!this.matchSizeToFont) {
+            return;
+        }
+
         const _style = window.getComputedStyle(this.track);
         const inheritedFontSize = _style['font-size'];
 
