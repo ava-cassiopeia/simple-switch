@@ -7,7 +7,9 @@ export {Switch};
 // Takes care of finding Switches within the site code.
 export var init = function() {
     var x, _switch,
-        switches = document.querySelectorAll("[data-type='simple-switch']");
+        switches = document.querySelectorAll(
+            "[data-type='simple-switch']:not(._simple-switch-checkbox)"
+        );
 
     for(x = 0; x < switches.length; x++) {
         _switch = switches[x];
