@@ -7,6 +7,7 @@ $simple-switch_outline-size: 3px !default;
 $simple-switch_size: 18px !default;
 $simple-switch_switch-speed: 250ms !default;
 $simple-switch_tray-color: #ccc !default;
+$simple-switch-disable-color: lighten($simple-switch_color, 30%) !default;
 
 
 // Hide the checkbox, but keep it in the DOM so it is visible to screen readers
@@ -71,6 +72,12 @@ $simple-switch_tray-color: #ccc !default;
             height: calc(var(--simple-switch_size) - #{$simple-switch_outline-size * 2});
             border-radius: var(--simple-switch_size);
         }
+    }
+
+    &._simple-switch_disabled {
+        background-color: $simple-switch_disable-color;
+        border-color: $simple-switch_disable-color;
+        cursor: default;
     }
 
     // Material mode (makes the Switch match the material.io spec)

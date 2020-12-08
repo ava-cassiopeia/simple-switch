@@ -5,23 +5,23 @@ export class Switch {
 
     /**
      * Constructor for a new Switch.
-     * 
+     *
      * @param {Object} config The configuration information for the new Switch.
-     * 
+     *
      * @param {HTMLElement} config.element The HTMLElement object repesenting
      *  the checkbox to upgrade. Either this or config.selector MUST be
      *  specified.
-     * 
-     * @param {String} config.selector The CSS selector that specifies the 
-     *  checkbox to be upgraded. Either this or the config.element MUST be 
+     *
+     * @param {String} config.selector The CSS selector that specifies the
+     *  checkbox to be upgraded. Either this or the config.element MUST be
      *  specified.
-     * 
+     *
      * @param {Boolean} config.material Defaults to false. If true, will render
      *  the new Switch in a Material Design-inspired look.
-     * 
+     *
      * @param {Boolean} config.matchSizeToFont Defaults to false. If true, will
      *  attempt to figure out the impled font size for the Switch, and match
-     *  its size to that font size. 
+     *  its size to that font size.
      */
     constructor(config) {
         // set/get basic properties from config or defaults
@@ -62,9 +62,11 @@ export class Switch {
             this.track.classList.add(Switch.CHECKED_CLASS_NAME);
         }
 
-        // The track itself, despite being a button, shouldn't be tabbed to. 
+        this.checkboxDisabled(!!this.element.disabled);
+
+        // The track itself, despite being a button, shouldn't be tabbed to.
         // Instead, when the original checkbox gains focus, the Javascript will
-        // update the track. This is so that screenreaders still read the 
+        // update the track. This is so that screenreaders still read the
         // Switch as a checkbox.
         this.track.setAttribute("tabindex", -1);
 
@@ -92,31 +94,25 @@ export class Switch {
     }
 
     /**
-     * Takes care of binding all relevant events from the checkbox so that the 
+     * Takes care of binding all relevant events from the checkbox so that the
      * Switch can update itself when those events happen.
      */
     bind() {
-        this.track.addEventListener("click", function(e) {
-            this.trackClicked(e);
-        }.bind(this), false);
+        this.track.addEventListener("click", this.handleTrackClick.bind(this), false);
+        this.element.addEventListener("focus", this.handleElementFocus.bind(this), false);
+        this.element.addEventListener("blur", this.handleElementBlur.bind(this), false);
+        this.element.addEventListener("click", this.handleElementClick.bind(this), false);
 
-        this.element.addEventListener("focus", function(e) {
-            this.checkboxFocused(e);
-        }.bind(this), false);
-
-        this.element.addEventListener("blur", function(e) {
-            this.checkboxBlurred(e);
-        }.bind(this), false);
-
-        this.element.addEventListener("click", function(e) {
-            this.checkboxToggled(e);
-        }.bind(this), false);
+        /** @private */
+        // Bind changes to the attributes
+        this.observer = new MutationObserver(this.handleMutation.bind(this));
+        this.observer.observe(this.element, { attributes: true });
     }
 
     /**
      * Called automatically when the wrapped checkbox gains focus.
-     * 
-     * @param {FocusEvent} e The focus event object. 
+     *
+     * @param {FocusEvent} e The focus event object.
      */
     checkboxFocused(e) {
         this.track.classList.add(Switch.FOCUSED_CLASS_NAME);
@@ -124,7 +120,7 @@ export class Switch {
 
     /**
      * Called automatically when the wrapped checkbox loses focus.
-     * 
+     *
      * @param {BlurEvent} e The blur event object.
      */
     checkboxBlurred(e) {
@@ -133,7 +129,7 @@ export class Switch {
 
     /**
      * Called automatically when the Switch track is clicked.
-     * 
+     *
      * @param {ClickEvent} e The click event object.
      */
     trackClicked(e) {
@@ -142,7 +138,7 @@ export class Switch {
 
     /**
      * Called automatically when the wrapped checkbox is clicked.
-     * 
+     *
      * @param {ClickEvent} e The click event object.
      */
     checkboxToggled(e) {
@@ -150,7 +146,22 @@ export class Switch {
     }
 
     /**
-     * Toggles the state of the Switch. Also takes care of making sure the 
+     * Called automatically when the wrapped checkbox is disabled.
+     *
+     * @param {Boolean} disabled Whether the checkbox is now disabled
+     */
+    checkboxDisabled(disabled) {
+        this.disabled = disabled;
+
+        if (this.disabled) {
+            this.track.classList.add(Switch.DISABLED_CLASS_NAME);
+        } else {
+            this.track.classList.remove(Switch.DISABLED_CLASS_NAME);
+        }
+    }
+
+    /**
+     * Toggles the state of the Switch. Also takes care of making sure the
      * wrapped checkbox is also updated.
      */
     toggle() {
@@ -170,6 +181,44 @@ export class Switch {
         this.element.dispatchEvent(evt);
     }
 
+    handleTrackClick(e) {
+        if (this.disabled) {
+            e.preventDefault();
+            return;
+        }
+        this.trackClicked(e);
+    }
+
+    handleElementFocus(e) {
+        this.checkboxFocused(e);
+    }
+
+    handleElementBlur(e) {
+        this.checkboxBlurred(e);
+    }
+
+    handleElementClick(e) {
+        if (this.disabled) {
+            e.preventDefault();
+            return;
+        }
+
+        this.checkboxToggled(e);
+    }
+
+    handleMutation(mutations) {
+        mutations.forEach((mutation) => {
+            if (mutation.type !== "attributes") {
+                return;
+            }
+            // Check the modified attributeName is "disabled"
+            if (mutation.attributeName === "disabled") {
+                const disabled = !!mutation.target.attributes["disabled"];
+                this.checkboxDisabled(disabled);
+            }
+        });
+    }
+
     static get CHECKED_CLASS_NAME() {
         return "on";
     }
@@ -178,4 +227,7 @@ export class Switch {
         return "focus";
     }
 
+    static get DISABLED_CLASS_NAME() {
+        return "_simple-switch_disabled";
+    }
 }
