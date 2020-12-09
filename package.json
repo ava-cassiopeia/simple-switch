@@ -4,7 +4,8 @@
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "scripts": {
-    "test": "medusa"
+    "test": "medusa",
+    "build": "./node_modules/.bin/gulp"
   },
   "author": "Ivan Mattie",
   "license": "ISC",
@@ -27,7 +28,7 @@
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-param": "^1.0.3",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "gulp-uglify": "^3.0.0",
     "gulp-webpack": "^1.5.0",
     "gulp-zip": "^4.0.0",
