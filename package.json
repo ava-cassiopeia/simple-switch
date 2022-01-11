@@ -5,7 +5,9 @@
   "main": "src/javascript/index.js",
   "scripts": {
     "test": "medusa",
-    "build": "./node_modules/.bin/gulp"
+    "build": "gulp",
+    "clean": "gulp clean",
+    "release": "gulp buildRelease"
   },
   "author": "Ava Mattie",
   "license": "ISC",
@@ -22,18 +24,19 @@
     "vanilla"
   ],
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.5.2",
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-param": "^1.0.3",
-    "gulp-sass": "^3.2.1",
-    "gulp-uglify": "^3.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
     "gulp-webpack": "^1.5.0",
-    "gulp-zip": "^4.0.0",
-    "medusa-cli": "^0.5.2",
-    "webpack": "^2.6.1",
+    "gulp-zip": "^5.1.0",
+    "medusa-cli": "^0.5.5",
+    "node-sass": "^7.0.1",
+    "really-simple-args": "^1.1.1",
+    "webpack": "^2.7.0",
     "webpack-stream": "^3.2.0"
   }
 }

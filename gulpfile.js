@@ -1,65 +1,89 @@
-const gulp = require('gulp-param')(require('gulp'), process.argv);;
-const sass = require("gulp-sass");
-const zip = require("gulp-zip");
-const uglify = require("gulp-uglify");
-const clean = require("gulp-clean");
-const webpack2 = require("webpack");
+const gulp = require("gulp");
+const sass = require("gulp-sass")(require("node-sass"));
 const webpackStream = require("webpack-stream");
+const webpack2 = require("webpack");
+const uglify = require("gulp-uglify");
+const zip = require("gulp-zip");
+const clean = require("gulp-clean");
+const args = require("really-simple-args")();
 
-var path = require("path");
+const OUTPUT_DIR = "dist";
 
-gulp.task("default", ["build-css", "build-js"]);
-
-gulp.task("build-css", function() {
-    return gulp.src(["src/sass/*.scss", "src/sass/**/*.scss"])
-        .pipe(sass({
-            outputStyle: "compressed"
-        }))
-        .pipe(gulp.dest("dist/css/"));
-});
-
-gulp.task("build-js", function() {
-    return gulp.src(["src/javascript/*.js", "src/javascript/**/*.js"])
-        .pipe(webpackStream(require("./webpack.config.js"), webpack2))
-        .pipe(uglify())
-        .pipe(gulp.dest("dist/js/"));
-});
-
-gulp.task("watch", function() {
-    gulp.watch(["src/sass/*.scss", "src/sass/**/*.scss"], ["build-css"]);
-    gulp.watch(["src/javascript/*/js", "src/javascript/**/*.js"], ["build-js"]);
-});
+const JS_SRCS = ["src/javascript/*.js", "src/javascript/**/*.js"];
+const CSS_SRCS = ["src/sass/*.scss", "src/sass/**/*.scss"];
 
 /**
- * RELEASE TOOLS
+ * =============================================================================
+ * | DEV BUILDS
+ * =============================================================================
  */
 
-gulp.task("build-release", ["prepare-release"], function(version) {
-    if(!version) {
-        version = "unknown";
-    }
+function buildCSS() {
+  return gulp.src(CSS_SRCS)
+    .pipe(sass({
+      outputStyle: "compressed"
+    }))
+    .pipe(gulp.dest(`${OUTPUT_DIR}/css/`));
+}
 
-    const releaseName = "simple-switch_v" + version + ".zip";
+function buildJS() {
+  return gulp.src(JS_SRCS)
+    .pipe(webpackStream(require("./webpack.config.js"), webpack2))
+    .pipe(uglify())
+    .pipe(gulp.dest(`${OUTPUT_DIR}/js/`));
+}
 
-    return gulp.src(["release/*", "release/**/*"])
-        .pipe(zip(releaseName))
-        .pipe(gulp.dest("releases/"));
-});
+function watch() {
+  gulp.watch(CSS_SRCS, buildCSS);
+  gulp.watch(JS_SRCS, buildJS);
+}
 
-gulp.task("prepare-release", ["build-css", "build-js", "release-sass"], function() {
-    return gulp.src(["dist/*", "dist/**/*"])
-        .pipe(gulp.dest("release/"));
-});
+/**
+ * =============================================================================
+ * | RELEASES
+ * =============================================================================
+ */
 
-gulp.task("release-sass", function() {
-    return gulp.src(["src/sass/*.scss", "src/sass/**/*.scss"])
-        .pipe(gulp.dest("dist/sass/"));
-});
+function buildRelease() {
+  let version = "";
+  if(args.hasParameter("version")) {
+    version = args.getParameter("version");
+  } else {
+    version = require("./package.json").version;
+  }
 
-gulp.task("clean", function() {
-    return gulp.src([
-        "dist/",
-        "release/",
-        "releases/"
-    ]).pipe(clean());
-});
+  const releaseName = `simple-switch_v${version}.zip`;
+
+  return gulp.src(["release/*", "release/**/*"])
+    .pipe(zip(releaseName))
+    .pipe(gulp.dest("releases/"));
+}
+
+function prepareRelease() {
+  return gulp.src(["dist/*", "dist/**/*"])
+    .pipe(gulp.dest("release/"));
+}
+
+function prepareReleaseSass() {
+  return gulp.src(CSS_SRCS)
+    .pipe(gulp.dest("dist/sass/"));
+}
+
+function cleanBuildArtifacts() {
+  return gulp.src([
+    "dist/",
+    "release/",
+    "releases/"
+  ]).pipe(clean());
+}
+
+exports.default = gulp.parallel(buildCSS, buildJS);
+exports.buildCSS = buildCSS;
+exports.buildJS = buildJS;
+exports.watch = watch;
+exports.buildRelease = gulp.series(
+  gulp.parallel(buildCSS, buildJS, prepareReleaseSass),
+  prepareRelease,
+  buildRelease,
+);
+exports.clean = cleanBuildArtifacts;
