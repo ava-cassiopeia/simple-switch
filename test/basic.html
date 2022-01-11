@@ -19,7 +19,10 @@
     <body>
         <div class="switch-wrapper">
             <label>
-                <input type="checkbox" data-type="simple-switch" />
+                <input
+                    type="checkbox"
+                    data-type="simple-switch"
+                    id="testCheckbox" />
                 Remember Me
             </label>
         </div>
@@ -30,9 +33,39 @@
                 Sign Up for Newsletter
             </label>
         </div>
+        <div class="switch-wrapper">
+          <label>
+              <input
+                  type="checkbox"
+                  data-type="simple-switch"
+                  disabled
+                  checked />
+              Disabled
+          </label>
+      </div>
+        <div class="switch-wrapper">
+          <label>
+              <input
+                  type="checkbox"
+                  data-type="simple-switch"
+                  data-material="true"
+                  disabled
+                  checked />
+              Disabled (Material)
+          </label>
+      </div>
         <script type="text/javascript" src="/dist/js/SimpleSwitch.min.js"></script>
         <script type="text/javascript">
             SimpleSwitch.init();
+            const testCheckbox = document.getElementById("testCheckbox");
+            testCheckbox.addEventListener("input", (e) => {
+              console.log("input event");
+              console.log(e);
+            });
+            testCheckbox.addEventListener("change", (e) => {
+              console.log("change event");
+              console.log(e);
+            });
         </script>
     </body>
 </html>
