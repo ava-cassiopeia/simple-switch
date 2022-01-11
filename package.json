@@ -1,13 +1,13 @@
 {
   "name": "a-simple-switch",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "scripts": {
     "test": "medusa",
     "build": "./node_modules/.bin/gulp"
   },
-  "author": "Ivan Mattie",
+  "author": "Ava Mattie",
   "license": "ISC",
   "repository": {
     "type": "git",
