@@ -175,10 +175,21 @@ export class Switch {
      */
     syncState() {
         this.element.checked = this.checked;
+        this.dispatchEvent();
+    }
 
-        // dispatch change event
-        const evt = new Event("change");
-        this.element.dispatchEvent(evt);
+    /**
+     * Dispatches relevant events for the element changing, trying to emulate
+     * natural <input> elements as much as possible.
+     * @private
+     */
+    dispatchEvent() {
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
+        const changeEvent = new Event("change");
+        this.element.dispatchEvent(changeEvent);
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
+        const inputEvent = new Event("input");
+        this.element.dispatchEvent(inputEvent);
     }
 
     handleTrackClick(e) {
