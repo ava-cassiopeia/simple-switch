@@ -114,12 +114,9 @@ Javascript Setup:
 </body>
 ```
 
-### Manually Creating Switches
+### Parameters
 
-You may also manually instantiate a switch, which may be useful for
-lazily-loaded UI elements or parts of the page. The `Switch` class which handles
-upgrading and controlling Switches is available under the `SimpleSwitch`
-namespace. There are a few different parameters, outlined below.
+There are a few different parameters that can be provided to configure SimpleSwitch:
 
 **Parameters:**
 
@@ -129,6 +126,13 @@ namespace. There are a few different parameters, outlined below.
 | Selector | `selector` | String | `null` | Yes* | This is the CSS selector that specifies the checkbox HTMLElement that will be upgraded to a Switch. Required if the `element` parameter is not set |
 | Material Style | `material` | Boolean | `false` | No | If set, will set the Switch to have an alternative style that matches the [Material.io spec](https://material.io/guidelines/components/selection-controls.html#selection-controls-switch) for Switches |
 | Update Size from Font | `matchSizeToFont` | Boolean | `false` | No | If set, will cause the Switch to attempt to match its size to the font size of the containing element |
+
+### Manually Creating Switches
+
+You may also manually instantiate a switch, which may be useful for
+lazily-loaded UI elements or parts of the page. The `Switch` class which handles
+upgrading and controlling Switches is available under the `SimpleSwitch`
+namespace.
 
 *Example:*
 
