@@ -24,8 +24,9 @@
     "vanilla"
   ],
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
     "babel-preset-env": "^1.7.0",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
