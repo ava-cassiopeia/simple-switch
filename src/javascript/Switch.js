@@ -41,6 +41,8 @@ export class Switch {
 
         // actually create the elements that make up the Switch
         this.setup();
+
+        this.element["_simple-switch-ref"] = this
     }
 
     /**

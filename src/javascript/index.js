@@ -20,3 +20,12 @@ export var init = function(options={}) {
         });
     }
 };
+
+// Toggles the switch element.
+//   element is the checkbox element that SimpleSwitch is connected to
+//   newState is optional. If given, it sets the switch to that state (as opposed to toggling it from its current value)
+export const toggle = function (element, newState = undefined) {
+    if (typeof newState === "undefined" || !!element.checked !== newState) {
+        element["_simple-switch-ref"].toggle()
+    }
+}
