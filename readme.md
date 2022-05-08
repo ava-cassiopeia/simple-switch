@@ -1,7 +1,6 @@
 # Simple Switch
 
 [![npm version](https://badge.fury.io/js/a-simple-switch.svg)](https://badge.fury.io/js/a-simple-switch)
-[![Build Status](https://travis-ci.org/aeolingamenfel/simple-switch.svg?branch=master)](https://travis-ci.org/aeolingamenfel/simple-switch)
 
 Simple, accessible, performant implementation of the Switch UI element.
 
