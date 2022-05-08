@@ -1,0 +1,28 @@
+name: Run Medusa Tests
+
+on: [push]
+
+jobs:
+  build-static:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
+    - name: Build and Test
+      run: |
+        npm install &&
+        npm run build &&
+        npm run test
+      env:
+        CI: true
