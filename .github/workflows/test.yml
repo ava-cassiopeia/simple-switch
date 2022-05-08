@@ -3,7 +3,7 @@ name: Run Medusa Tests
 on: [push]
 
 jobs:
-  build-static:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
