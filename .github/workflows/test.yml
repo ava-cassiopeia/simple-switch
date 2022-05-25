@@ -1,4 +1,4 @@
-name: Run Medusa Tests
+name: Build and Tests
 
 on: [push]
 
