@@ -11,6 +11,10 @@ describe("SimpleSwitch", function() {
     it("should make the Switch class available", function() {
         assert(!!window.SimpleSwitch.Switch);
     });
+
+    it("should have a toggle() function", function () {
+        assert(!!window.SimpleSwitch.toggle)
+    })
 });
 
 describe("Switch instance", function() {
@@ -49,4 +53,32 @@ describe("Switch instance", function() {
         assert(dynamicSwitch.checked === (!oldState));
         assert(dynamicSwitch.checked === dynamicCheckbox.checked);
     });
+
+    it("should be toggled via the toggle function", function() {
+        // grab the old state
+        const oldState = dynamicCheckbox.checked
+
+        // Toggle the switch via JS
+        SimpleSwitch.toggle(dynamicCheckbox)
+
+        // verify the Switch state is appropriate
+        assert(dynamicSwitch.checked === (!oldState))
+        assert(dynamicSwitch.checked === dynamicCheckbox.checked)
+
+
+        // Set the switch to off
+        SimpleSwitch.toggle(dynamicCheckbox, false)
+
+        // verify the Switch state is appropriate
+        assert(dynamicSwitch.checked === false)
+        assert(dynamicSwitch.checked === dynamicCheckbox.checked)
+
+
+        // Set the switch to on
+        SimpleSwitch.toggle(dynamicCheckbox, true)
+
+        // verify the Switch state is appropriate
+        assert(dynamicSwitch.checked === true)
+        assert(dynamicSwitch.checked === dynamicCheckbox.checked)
+    })
 });

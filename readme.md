@@ -167,3 +167,19 @@ below.
 | `$simple-switch_size` | Size Unit (px) | `12px` | By default, the Switch matches its size to the inherited `font-size` of the Switch, so that it can match any label/text next to it in terms of size. However, on older browsers that don't support CSS Variables, this is the fallback that the CSS goes to |
 | `$simple-switch_switch-speed` | Timing Unit | `250ms` | The amount of time it takes the Switch animation to finish moving between the "on" and "off" state |
 | `$simple-switch_tray-color` | Color | `#ccc` | The color of the tray of the Switch |
+
+## Controlling the switch via Javascript
+
+The switch can be toggled via Javascript:
+
+```js
+  SimpleSwitch.toggle(checkboxElement);
+```
+
+It can also be set specifically to on or off:
+
+```js
+  SimpleSwitch.toggle(checkboxElement, true);
+
+  SimpleSwitch.toggle(checkboxElement, false);
+```
