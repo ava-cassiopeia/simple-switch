@@ -1,6 +1,6 @@
 {
   "name": "a-simple-switch",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aeolingamenfel/simple-switch"
+    "url": "https://github.com/ava-cassiopeia/simple-switch"
   },
   "keywords": [
     "vanilla js",

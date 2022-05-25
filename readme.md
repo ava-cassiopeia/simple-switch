@@ -1,6 +1,7 @@
 # Simple Switch
 
 [![npm version](https://badge.fury.io/js/a-simple-switch.svg)](https://badge.fury.io/js/a-simple-switch)
+[![Build](https://github.com/ava-cassiopeia/simple-switch/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/ava-cassiopeia/simple-switch/actions/workflows/test.yml)
 
 Simple, accessible, performant implementation of the Switch UI element.
 
