@@ -9,15 +9,15 @@ export class Switch {
   static readonly DISABLED_CLASS_NAME = "_simple-switch_disabled";
 
   checked: boolean;
-  disabled: boolean;
+  disabled: boolean = false;
 
   readonly element: HTMLInputElement;
   readonly isMaterial: boolean;
   readonly matchSizeToFont: boolean;
 
-  private track: HTMLButtonElement;
-  private handle: HTMLSpanElement;
-  private observer: MutationObserver;
+  private track?: HTMLButtonElement;
+  private handle?: HTMLSpanElement;
+  private observer?: MutationObserver;
 
   constructor(config: SimpleSwitchConfig) {
     this.element = config.element! || document.querySelector(config.selector!);
@@ -37,6 +37,7 @@ export class Switch {
     // Actually create the elements that make up the Switch
     this.setup();
     // Create a back reference for accessing via JS
+    // @ts-ignore: This is intentionally modifying the DOM representation here.
     this.element["_simple-switch-ref"] = this;
   }
 
@@ -45,7 +46,7 @@ export class Switch {
    * wrapped checkbox is also updated.
    */
   toggle() {
-    this.checked = this.track.classList.toggle(Switch.CHECKED_CLASS_NAME);
+    this.checked = this.track!.classList.toggle(Switch.CHECKED_CLASS_NAME);
     this.syncState();
   }
 
@@ -92,10 +93,11 @@ export class Switch {
   private updateSize() {
     if (!this.matchSizeToFont) return;
 
-    const _style = window.getComputedStyle(this.track);
+    const _style = window.getComputedStyle(this.track!);
+    // @ts-ignore: font-size is known to exist
     const inheritedFontSize = _style['font-size'];
 
-    this.track.style.setProperty('--simple-switch_size', inheritedFontSize);
+    this.track!.style.setProperty('--simple-switch_size', inheritedFontSize);
   }
 
   /**
@@ -103,7 +105,7 @@ export class Switch {
    * Switch can update itself when those events happen.
    */
   private bind() {
-    this.track.addEventListener(
+    this.track!.addEventListener(
       "click", this.handleTrackClick.bind(this), false);
     this.element.addEventListener(
       "focus", this.handleElementFocus.bind(this), false);
@@ -121,14 +123,14 @@ export class Switch {
    * Called automatically when the wrapped checkbox gains focus.
    */
   private checkboxFocused(e: FocusEvent) {
-    this.track.classList.add(Switch.FOCUSED_CLASS_NAME);
+    this.track!.classList.add(Switch.FOCUSED_CLASS_NAME);
   }
 
   /**
    * Called automatically when the wrapped checkbox loses focus.
    */
   private checkboxBlurred(e: FocusEvent) {
-    this.track.classList.remove(Switch.FOCUSED_CLASS_NAME);
+    this.track!.classList.remove(Switch.FOCUSED_CLASS_NAME);
   }
 
   /**
@@ -152,9 +154,9 @@ export class Switch {
     this.disabled = disabled;
 
     if (this.disabled) {
-      this.track.classList.add(Switch.DISABLED_CLASS_NAME);
+      this.track!.classList.add(Switch.DISABLED_CLASS_NAME);
     } else {
-      this.track.classList.remove(Switch.DISABLED_CLASS_NAME);
+      this.track!.classList.remove(Switch.DISABLED_CLASS_NAME);
     }
   }
 
@@ -204,13 +206,14 @@ export class Switch {
     this.checkboxToggled(e);
   }
 
-  private handleMutation(mutations) {
+  private handleMutation(mutations: MutationRecord[]) {
     mutations.forEach((mutation) => {
       if (mutation.type !== "attributes") {
         return;
       }
       // Check the modified attributeName is "disabled"
       if (mutation.attributeName === "disabled") {
+        // @ts-ignore: target is definitely an HTMLElement here, not a Node.
         const disabled = !!mutation.target.attributes["disabled"];
         this.checkboxDisabled(disabled);
       }

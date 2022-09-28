@@ -26,6 +26,8 @@ export function init(options: SimpleSwitchConfig = {}) {
 export function toggle(
   element: HTMLInputElement, newState: boolean|undefined = undefined) {
   if (typeof newState === "undefined" || !!element.checked !== newState) {
-    element["_simple-switch-ref"].toggle();
+    // @ts-ignore: This is set up in the Switch construction.
+    const ref = element["_simple-switch-ref"] as Switch;
+    ref.toggle();
   }
 }
