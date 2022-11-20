@@ -9,7 +9,7 @@
     "readme.md"
   ],
   "scripts": {
-    "test": "medusa",
+    "test": "karma start --single-run",
     "manualTest": "http-server",
     "build": "gulp",
     "clean": "gulp clean",
