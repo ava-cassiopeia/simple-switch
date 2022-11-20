@@ -1,10 +1,10 @@
 {
   "name": "a-simple-switch",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "files": [
-    "dist",
+    "release",
     "src",
     "readme.md"
   ],
