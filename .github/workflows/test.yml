@@ -23,6 +23,8 @@ jobs:
       run: |
         npm install &&
         npm run build &&
-        npm run test
+        npx karma start --detached &&
+        npx karma run
+        npx karma stop
       env:
         CI: true
