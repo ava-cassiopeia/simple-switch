@@ -51,7 +51,8 @@ function buildJS() {
         extensions: ['.ts', '.js'],
       },
       output: {
-        filename: '[name].min.js'
+        filename: '[name].min.js',
+        library: 'SimpleSwitch',
       },
     }))
     .pipe(gulp.dest(`${OUTPUT_DIR}/js/`));
