@@ -4,8 +4,8 @@
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
   "files": [
-    "dist/",
-    "src/",
+    "dist",
+    "src",
     "readme.md"
   ],
   "scripts": {
