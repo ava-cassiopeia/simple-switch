@@ -10,20 +10,22 @@ Simple, accessible, performant implementation of the Switch UI element.
 
 **Features:**
 
-  - Vanilla JS/CSS: doesn't require any outside library to function
-  - Accessible: works properly with screenreaders and the ARIA spec
-  - Performant: uses proper layering and transitioning to ensure high performance
+- Vanilla JS/CSS: doesn't require any outside library to function
+- Accessible: works properly with screenreaders and the ARIA spec
+- Performant: uses proper layering and transitioning to ensure high performance
 
 ---
 
-  - [Installation](#installation)
-    - [Installing the Javascript](#installing-the-javascript)
-    - [Installing the CSS](#installing-the-css)
-    - [Installing the SASS](#installing-the-sass)
-  - [Creating a Simple Switch](#creating-a-simple-switch)
-    - [Automatically Creating Switches](#automatically-creating-switches)
-    - [Manually Creating Switches](#manually-creating-switches)
-  - [SASS Variables](#sass-variables)
+- [Installation](#installation)
+  - [Installing the Javascript](#installing-the-javascript)
+  - [Installing the CSS](#installing-the-css)
+  - [Installing the SASS](#installing-the-sass)
+- [Creating a Simple Switch](#creating-a-simple-switch)
+  - [Automatically Creating Switches](#automatically-creating-switches)
+  - [Manually Creating Switches](#manually-creating-switches)
+- [SASS Variables](#sass-variables)
+- [Controlling the switch via JavaScript](#controlling-the-switch-via-javascript)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -95,11 +97,13 @@ per switch using the `data-material` attribute.
 *Example:*
 
 Standard Switch:
+
 ```HTML
 <input type="checkbox" name="my-checkbox" data-type="simple-switch" />
 ```
 
 Material Switch:
+
 ```HTML
 <input type="checkbox" name="my-checkbox" data-type="simple-switch" data-material="true" />
 ```
@@ -137,11 +141,13 @@ namespace.
 *Example:*
 
 HTML:
+
 ```HTML
 <input type="checkbox" name="my-checkbox" id="my-checkbox" />
 ```
 
 Javascript:
+
 ```Javascript
 let myCheckbox = document.getElementById("my-checkbox");
 
@@ -169,9 +175,9 @@ below.
 | `$simple-switch_switch-speed` | Timing Unit | `250ms` | The amount of time it takes the Switch animation to finish moving between the "on" and "off" state |
 | `$simple-switch_tray-color` | Color | `#ccc` | The color of the tray of the Switch |
 
-## Controlling the switch via Javascript
+## Controlling the switch via JavaScript
 
-The switch can be toggled via Javascript:
+The switch can be toggled via JavaScript:
 
 ```js
   SimpleSwitch.toggle(checkboxElement);
@@ -184,3 +190,16 @@ It can also be set specifically to on or off:
 
   SimpleSwitch.toggle(checkboxElement, false);
 ```
+
+## Contributing
+
+Feel free to send pull requests, issues, feature requests, etc. There is no
+SLA for responses on this repo, but I trying to respond to issues and PRs in a
+timely manner.
+
+When sending PRs please follow the Google TypeScript style guide
+([style guide link](https://google.github.io/styleguide/tsguide.html)) and try
+to add test coverage where possible.
+
+Most of the codebase and NPM commands (like `npm test`) should work
+out-of-the-box, but you will need Chrome installed to run headless tests.

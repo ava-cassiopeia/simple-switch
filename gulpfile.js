@@ -5,11 +5,15 @@ const webpack2 = require("webpack");
 const uglify = require("gulp-uglify");
 const zip = require("gulp-zip");
 const clean = require("gulp-clean");
+const ts = require("gulp-typescript");
 const args = require("really-simple-args")();
+
+const tsProject = ts.createProject("src/typescript/tsconfig.json");
 
 const OUTPUT_DIR = "dist";
 
 const JS_SRCS = ["src/javascript/*.js", "src/javascript/**/*.js"];
+const TS_SRCS = ["src/typescript/*.ts", "src/typescript/**/*.ts"];
 const CSS_SRCS = ["src/sass/*.scss", "src/sass/**/*.scss"];
 
 /**
@@ -27,9 +31,30 @@ function buildCSS() {
 }
 
 function buildJS() {
-  return gulp.src(JS_SRCS)
-    .pipe(webpackStream(require("./webpack.config.js"), webpack2))
-    .pipe(uglify())
+  return gulp.src(TS_SRCS)
+    .pipe(webpackStream({
+      mode: "production",
+      entry: {
+        // Possible add .min here?
+        SimpleSwitch: "./src/typescript/index.ts",
+      },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
+          },
+        ],
+      },
+      resolve: {
+        extensions: ['.ts', '.js'],
+      },
+      output: {
+        filename: '[name].min.js',
+        library: 'SimpleSwitch',
+      },
+    }))
     .pipe(gulp.dest(`${OUTPUT_DIR}/js/`));
 }
 
