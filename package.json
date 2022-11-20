@@ -3,6 +3,11 @@
   "version": "0.8.1",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "src/javascript/index.js",
+  "files": [
+    "release",
+    "src",
+    "readme.md"
+  ],
   "scripts": {
     "test": "medusa",
     "manualTest": "http-server",
