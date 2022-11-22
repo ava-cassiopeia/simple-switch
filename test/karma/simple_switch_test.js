@@ -1,6 +1,6 @@
 describe("SimpleSwitch", () => {
   afterEach(async () => {
-    await this.cleanupTestingSwitches();
+    await cleanupTestingSwitches();
   });
 
   it("should be available in the browser", () => {
@@ -26,6 +26,27 @@ describe("SimpleSwitch", () => {
       it("should match initial element state", async () => {
         const {simpleSwitch, checkboxElement} = await createSwitch();
         expect(simpleSwitch.checked).toEqual(checkboxElement.checked);
+        expect(simpleSwitch.disabled).toEqual(checkboxElement.disabled);
+      });
+
+      it("should add a backreference to itself on the element", async () => {
+        const {simpleSwitch, checkboxElement} = await createSwitch();
+        expect(checkboxElement["_simple-switch-ref"]).toBe(simpleSwitch);
+      });
+
+      it("should set the material state to false from attribute", async () => {
+        const {simpleSwitch, checkboxElement} = await createSwitch();
+        expect(simpleSwitch.checked).toEqual(checkboxElement.checked);
+        expect(simpleSwitch.disabled).toEqual(checkboxElement.disabled);
+        expect(simpleSwitch.isMaterial).toBe(false);
+      });
+
+      it("should set the material state to true from attribute", async () => {
+        const {simpleSwitch, checkboxElement} =
+          await createSwitch(/* isMaterial= */ true);
+        expect(simpleSwitch.checked).toEqual(checkboxElement.checked);
+        expect(simpleSwitch.disabled).toEqual(checkboxElement.disabled);
+        expect(simpleSwitch.isMaterial).toBe(true);
       });
   
       it("should update when clicked", async () => {
@@ -70,6 +91,9 @@ describe("SimpleSwitch", () => {
       SimpleSwitch.toggle(checkboxElement);
       await waitForAnimationFrame();
       expect(simpleSwitch.checked).toBe(true);
+      SimpleSwitch.toggle(checkboxElement);
+      await waitForAnimationFrame();
+      expect(simpleSwitch.checked).toBe(false);
     });
 
     it("toggles the given Switch element to false", async () => {
@@ -119,11 +143,14 @@ describe("SimpleSwitch", () => {
   });
 });
 
-async function createSwitch() {
+async function createSwitch(isMaterial = false) {
   // First create the core element
   const checkboxElement = document.createElement("input");
   checkboxElement.type = "checkbox";
   checkboxElement.classList.add("testing-checkbox");
+  if (isMaterial) {
+    checkboxElement.setAttribute("data-material", "true");
+  }
 
   document.body.appendChild(checkboxElement);
   await waitForAnimationFrame();
