@@ -2,10 +2,9 @@
   "name": "a-simple-switch",
   "version": "0.9.0",
   "description": "Vanilla JS/CSS Switch UI element",
-  "main": "src/javascript/index.js",
+  "main": "release/js/SimpleSwitch.min.js",
   "files": [
     "release",
-    "src",
     "readme.md"
   ],
   "scripts": {
@@ -24,15 +23,16 @@
   "keywords": [
     "vanilla js",
     "switch",
+    "checkbox",
     "ui",
     "material design",
     "material",
     "vanilla"
   ],
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.3",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^8.4.1",
     "babel-preset-env": "^1.7.0",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
@@ -42,15 +42,15 @@
     "gulp-webpack": "^1.5.0",
     "gulp-zip": "^5.1.0",
     "http-server": "^14.1.1",
-    "jasmine-core": "^4.5.0",
-    "karma": "^6.4.1",
-    "karma-chrome-launcher": "^3.1.1",
+    "jasmine-core": "^4.6.1",
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
     "karma-jasmine": "^5.1.0",
-    "node-sass": "^7.0.1",
-    "really-simple-args": "^1.1.1",
-    "ts-loader": "^9.3.0",
-    "typescript": "^4.6.4",
-    "webpack": "^5.72.0",
+    "node-sass": "^7.0.3",
+    "really-simple-args": "^1.2.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.97.1",
     "webpack-stream": "^7.0.0"
   }
 }
