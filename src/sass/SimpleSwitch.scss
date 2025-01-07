@@ -7,7 +7,7 @@ $simple-switch_outline-size: 3px !default;
 $simple-switch_size: 18px !default;
 $simple-switch_switch-speed: 250ms !default;
 $simple-switch_tray-color: #ccc !default;
-$simple-switch-disable-color: lighten($simple-switch_color, 30%) !default;
+$simple-switch-disable-color: color-mix(in srgb, $simple-switch_color 70%, white) !default;
 
 
 // Hide the checkbox, but keep it in the DOM so it is visible to screen readers
@@ -106,7 +106,7 @@ $simple-switch-disable-color: lighten($simple-switch_color, 30%) !default;
             }
 
             .handle {
-                background: darken($simple-switch_color, 15%);
+                background: color-mix(in srgb, $simple-switch_color 85%, black);
                 transform: translateX(#{$simple-switch_size - $simple-switch_outline-size});
 
                 @supports(--foobar: false) {
