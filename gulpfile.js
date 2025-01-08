@@ -1,14 +1,10 @@
 const gulp = require("gulp");
 const sass = require("gulp-sass")(require("node-sass"));
 const webpackStream = require("webpack-stream");
-const webpack2 = require("webpack");
-const uglify = require("gulp-uglify");
 const zip = require("gulp-zip");
 const clean = require("gulp-clean");
 const ts = require("gulp-typescript");
 const args = require("really-simple-args")();
-
-const tsProject = ts.createProject("src/typescript/tsconfig.json");
 
 const OUTPUT_DIR = "dist";
 
@@ -30,12 +26,11 @@ function buildCSS() {
     .pipe(gulp.dest(`${OUTPUT_DIR}/css/`));
 }
 
-function buildJS() {
+function buildReleaseJS() {
   return gulp.src(TS_SRCS)
     .pipe(webpackStream({
       mode: "production",
       entry: {
-        // Possible add .min here?
         SimpleSwitch: "./src/typescript/index.ts",
       },
       module: {
@@ -58,9 +53,20 @@ function buildJS() {
     .pipe(gulp.dest(`${OUTPUT_DIR}/js/`));
 }
 
+function buildJS() {
+  return gulp.src(TS_SRCS)
+    .pipe(ts({
+      target: "es6",
+      module: "nodenext",
+      moduleResolution: "nodenext",
+      declaration: true, // generate .d.ts files
+    }))
+    .pipe(gulp.dest(`${OUTPUT_DIR}/commonjs/`));
+}
+
 function watch() {
   gulp.watch(CSS_SRCS, buildCSS);
-  gulp.watch(JS_SRCS, buildJS);
+  gulp.watch(JS_SRCS, buildJS, buildReleaseJS);
 }
 
 /**
@@ -102,12 +108,12 @@ function cleanBuildArtifacts() {
   ]).pipe(clean());
 }
 
-exports.default = gulp.parallel(buildCSS, buildJS);
+exports.default = gulp.parallel(buildCSS, buildJS, buildReleaseJS);
 exports.buildCSS = buildCSS;
 exports.buildJS = buildJS;
 exports.watch = watch;
 exports.buildRelease = gulp.series(
-  gulp.parallel(buildCSS, buildJS, prepareReleaseSass),
+  gulp.parallel(buildCSS, buildJS, buildReleaseJS, prepareReleaseSass),
   prepareRelease,
   buildRelease,
 );
