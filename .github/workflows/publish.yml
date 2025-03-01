@@ -20,32 +20,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies
+      - name: Install dependencies and build
         run:  |
           npm ci
           npm run build
 
-      - name: Publish to npm registry
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm publish
-
-      - name: Set up Node.js for GH
-        uses: actions/setup-node@v4
+      - name: Publish package to GitHub and NPM
+        uses: ava-cassiopeia/publish-to-npm-and-github@16dcad1dd7dc78289fe173082c978277f712a13f
         with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
-
-      - name: Swap package name
-        uses: jaywcjlove/github-action-package@v2.0.0
-        with:
-          rename: '@ava-cassiopeia/a-simple-switch'
-
-      - name: Publish to GitHub Packages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm publish
+          npm-package-name: 'a-simple-switch'
+          github-package-name: '@ava-cassiopeia/a-simple-switch'
