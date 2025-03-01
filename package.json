@@ -19,7 +19,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ava-cassiopeia/simple-switch"
+    "url": "git+https://github.com/ava-cassiopeia/simple-switch.git"
   },
   "keywords": [
     "vanilla js",
