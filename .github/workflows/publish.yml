@@ -39,9 +39,13 @@ jobs:
           node-version: '20.x'
           registry-url: 'https://npm.pkg.github.com'
 
+      - name: Swap package name
+        uses: jaywcjlove/github-action-package@v2.0.0
+        with:
+          rename: '@ava-cassiopeia/a-simple-switch'
+
       - name: Publish to GitHub Packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm run gh-release-package-swap
           npm publish
