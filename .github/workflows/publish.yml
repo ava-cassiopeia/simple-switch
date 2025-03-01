@@ -33,9 +33,15 @@ jobs:
         run: |
           npm publish
 
+      - name: Set up Node.js for GH
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+
       - name: Publish to GitHub Packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run gh-release-package-swap
-          npm publish --registry=https://npm.pkg.github.com
+          npm publish
