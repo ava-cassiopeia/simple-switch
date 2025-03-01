@@ -1,6 +1,6 @@
 {
   "name": "a-simple-switch",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "release/commonjs/index.js",
   "files": [
