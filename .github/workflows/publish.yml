@@ -27,7 +27,9 @@ jobs:
           npm run build
 
       - name: Publish package to GitHub and NPM
-        uses: ava-cassiopeia/publish-to-npm-and-github@16dcad1dd7dc78289fe173082c978277f712a13f
+        uses: ava-cassiopeia/publish-to-npm-and-github@6f67928636ec9735b4998a8557672580ad5f5a4d
         with:
           npm-package-name: 'a-simple-switch'
           github-package-name: '@ava-cassiopeia/a-simple-switch'
+          npm-token: ${{ secrets.NPM_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
