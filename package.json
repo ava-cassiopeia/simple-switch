@@ -1,6 +1,6 @@
 {
   "name": "a-simple-switch",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Vanilla JS/CSS Switch UI element",
   "main": "release/commonjs/index.js",
   "files": [
@@ -12,7 +12,8 @@
     "manualTest": "http-server",
     "build": "gulp",
     "clean": "gulp clean",
-    "release": "gulp buildRelease"
+    "release": "gulp buildRelease",
+    "gh-release-package-swap": "node scripts/gh_package_swap.js"
   },
   "author": "Ava Mattie",
   "license": "ISC",
