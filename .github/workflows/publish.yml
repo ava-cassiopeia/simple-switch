@@ -25,6 +25,7 @@ jobs:
         run:  |
           npm ci
           npm run build
+          npm run release
 
       - name: Publish package to GitHub and NPM
         uses: ava-cassiopeia/publish-to-npm-and-github@1.0.0
